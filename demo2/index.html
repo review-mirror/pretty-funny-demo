@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<!-- https://codepen.io/corvus278/pen/ZExzBOL -->
+<head>
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap");
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+        }
+
+        body {
+            display: grid;
+            place-items: center;
+            min-height: 100vh;
+            background: #2f363e;
+        }
+
+        .container {
+            position: relative;
+            display: grid;
+            place-items: center;
+            background: #2f363e;
+            border-radius: 20px;
+            border-top-left-radius: 225px;
+            border-top-right-radius: 225px;
+            box-shadow: 25px 25px 75px rgba(0, 0, 0, 0.75), 10px 50px 70px rgba(0, 0, 0, 0.25), inset 5px 5px 10px rgba(0, 0, 0, 0.5), inset 5px 5px 20px rgba(255, 255, 255, 0.2), inset -5px -5px 15px rgba(0, 0, 0, 0.75);
+        }
+
+        .clock {
+            position: relative;
+            display: grid;
+            place-items: center;
+            width: 450px;
+            height: 450px;
+            margin-bottom: 2rem;
+            background: #2f363e;
+            border-radius: 50%;
+            box-shadow: 10px 50px 70px rgba(0, 0, 0, 0.25), inset 5px 5px 10px rgba(0, 0, 0, 0.5), inset 5px 5px 20px rgba(255, 255, 255, 0.2), inset -5px -5px 15px rgba(0, 0, 0, 0.75);
+        }
+
+        .clock::before {
+            content: "";
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: #2f363e;
+            border: 3px solid #fff;
+            border-radius: 50%;
+            z-index: 100000;
+        }
+
+        .clock span {
+            position: absolute;
+            inset: 20px;
+            color: #fff;
+            text-align: center;
+            transform: rotate(calc(30deg * var(--i)));
+        }
+
+        .clock span b {
+            font-size: 2em;
+            opacity: 0.25;
+            font-weight: 600;
+            display: inline-block;
+            transform: rotate(calc(-30deg * var(--i)));
+        }
+
+        .circle {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            border: 2px solid rgba(0, 0, 0, 0.25);
+            border-radius: 50%;
+            z-index: 10;
+            transition: transfrom 1s;
+        }
+
+        .circle::before {
+            content: "";
+            position: absolute;
+            top: -8.5px;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background: var(--clr);
+            box-shadow: 0 0 20px var(--clr), 0 0 60px var(--clr);
+        }
+
+        .circle2 {
+            width: 240px;
+            height: 240px;
+            z-index: 9;
+        }
+
+        .circle3 {
+            width: 180px;
+            height: 180px;
+            z-index: 8;
+        }
+
+        .circle i {
+            position: absolute;
+            width: 6px;
+            height: 50%;
+            background: var(--clr);
+            opacity: 0.75;
+            transform-origin: bottom;
+            transform: scaleY(0.5);
+        }
+
+        .circle:nth-child(1) i {
+            width: 2px;
+        }
+
+        .circle:nth-child(2) i {
+            width: 6px;
+        }
+
+        #time {
+            display: flex;
+            margin-bottom: 2rem;
+            padding: 10px 20px;
+            font-size: 2em;
+            font-weight: 600;
+            border: 2px solid rgba(0, 0, 0, 0.5);
+            border-radius: 40px;
+            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5), inset 5px 5px 20px rgba(255, 255, 255, 0.2), inset -5px -5px 15px rgba(0, 0, 0, 0.75);
+        }
+
+        #time div {
+            position: relative;
+            width: 60px;
+            text-align: center;
+            font-weight: 500;
+            color: var(--clr);
+        }
+
+        #time div:not(:last-child)::after {
+            content: ":";
+            position: absolute;
+            right: -4px;
+        }
+
+        #time div#minutes::after {
+            animation: flashing 1s steps(1) infinite;
+        }
+
+        @keyframes flashing {
+            0% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0;
+            }
+        }
+    </style>
+
+    
+</head>
+
+<body>
+    <div class="container">
+        <div class="clock">
+            <div class="circle" id="sc" style="--clr: #04fc43"><i></i></div>
+            <div class="circle circle2" id="mn" style="--clr: #fee800"><i></i></div>
+            <div class="circle circle3" id="hr" style="--clr: #ff2972"><i></i></div><span style="--i:1;">
+                <b>1</b></span><span style="--i:2;"> <b>2</b></span><span style="--i:3;"> <b>3</b></span><span
+                style="--i:4;"> <b>4</b></span><span style="--i:5;"> <b>5</b></span><span style="--i:6;">
+                <b>6</b></span><span style="--i:7;"> <b>7</b></span><span style="--i:8;"> <b>8</b></span><span
+                style="--i:9;"> <b>9</b></span><span style="--i:10;"> <b>10</b></span><span style="--i:11;">
+                <b>11</b></span><span style="--i:12;"> <b>12</b></span>
+        </div>
+        <!-- digital clock-->
+        <div id="time">
+            <div id="hour" style="--clr: #ff2972">00</div>
+            <div id="minutes" style="--clr: #fee800">00</div>
+            <div id="seconds" style="--clr: #04fc43">00</div>
+        </div>
+    </div>
+    <script>
+        const hr = document.querySelector("#hr");
+        const mn = document.querySelector("#mn");
+        const sc = document.querySelector("#sc");
+
+        // Digital clock
+        const hours = document.querySelector("#hour");
+        const minutes = document.querySelector("#minutes");
+        const seconds = document.querySelector("#seconds");
+
+        const switchHour24Format = (date) => date.toLocaleString([], { hour12: false });
+
+        setInterval(() => {
+            const day = new Date();
+            const hh = day.getHours() * 30;
+            const mm = day.getMinutes() * 6;
+            const ss = day.getSeconds() * 6;
+
+            hr.style.transform = `rotateZ(${hh + mm / 12}deg`;
+            mn.style.transform = `rotateZ(${mm}deg`;
+            sc.style.transform = `rotateZ(${ss}deg`;
+
+            // Set time to digital clock
+            switchHour24Format(day);
+            let h = day.getHours();
+            let m = day.getMinutes();
+            let s = day.getSeconds();
+            h = h < 10 ? "0" + h : h;
+            m = m < 10 ? "0" + m : m;
+            s = s < 10 ? "0" + s : s;
+
+            hour.textContent = h;
+            minutes.textContent = m;
+            seconds.textContent = s;
+        });
+
+    </script>
+</body>
+
+</html>
